@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AgriQuadCopterApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="CustomBlackStyle" parent="Theme.Design.Light">
+        <item name="colorPrimary">#E91E63</item>
+        <item name="colorAccent">#000000</item>
+    </style>
+
+    <style name="CustomStyleRed" parent="Theme.Design.Light">
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorAccent">#F44336</item>
+    </style>
+
+    <style name="Theme.AgriQuadCopterApp" parent="Base.Theme.AgriQuadCopterApp" />
+
+    <style name="Theme.AgriQuadCopterApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#E91E63</item>
+        <item name="colorAccent">#000000</item>
+
+        <item name="colorSecondary">#009688</item>
+        <item name="colorSecondaryVariant">#009688</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+
+    <style name="Theme.AgriQuadCopterApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AgriQuadCopterApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
