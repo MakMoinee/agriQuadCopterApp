@@ -13,12 +13,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.drone.thesis.databinding.ActivityDashboardBinding;
+import com.drone.thesis.interfaces.DroneFragmentListener;
 import com.drone.thesis.interfaces.LogoutListener;
 import com.drone.thesis.preference.LocalPref;
 import com.github.MakMoinee.library.preference.LoginPref;
 import com.github.MakMoinee.library.services.Utils;
 
-public class DashboardActivity extends AppCompatActivity implements LogoutListener {
+public class DashboardActivity extends AppCompatActivity implements LogoutListener, DroneFragmentListener {
 
     private ActivityDashboardBinding binding;
     private AppBarConfiguration mAppBarConfiguration;
@@ -34,7 +35,7 @@ public class DashboardActivity extends AppCompatActivity implements LogoutListen
         setSupportActionBar(binding.appBarDashboard.toolbar);
         drawer = binding.drawerLayout;
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_logout)
+                R.id.nav_home, R.id.nav_drones, R.id.nav_logout)
                 .setOpenableLayout(drawer)
                 .build();
 
@@ -75,4 +76,11 @@ public class DashboardActivity extends AppCompatActivity implements LogoutListen
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public void setParentTitle() {
+        getSupportActionBar().setTitle("List Of Drones");
+    }
+
+
 }

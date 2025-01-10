@@ -32,6 +32,9 @@
         <activity
             android:name=".CreateAccountActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".DroneActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
