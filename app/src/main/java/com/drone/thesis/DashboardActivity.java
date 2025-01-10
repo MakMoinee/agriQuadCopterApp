@@ -39,21 +39,19 @@ public class DashboardActivity extends AppCompatActivity implements LogoutListen
                 .build();
 
         navController = Navigation.findNavController(DashboardActivity.this, R.id.nav_host_fragment_content_dashboard);
-        NavigationUI.setupActionBarWithNavController(DashboardActivity.this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        Utils.setUpNavigation(DashboardActivity.this, binding.navView, navController, mAppBarConfiguration);
         setNavDetails();
     }
 
     private void setNavDetails() {
         String firstName = new LoginPref(DashboardActivity.this).getStringItem("firstName");
-        String middleName = new LoginPref(DashboardActivity.this).getStringItem("middleName");
         String lastName = new LoginPref(DashboardActivity.this).getStringItem("lastName");
         String username = new LoginPref(DashboardActivity.this).getStringItem("username");
 
         View mView = Utils.getNavView(binding.navView);
         TextView txtFullName = mView.findViewById(R.id.txtFullName);
         TextView txtUsername = mView.findViewById(R.id.txtUsername);
-        txtFullName.setText(String.format("%s %s %s", firstName, middleName, lastName));
+        txtFullName.setText(String.format("%s %s", firstName, lastName));
         txtUsername.setText(username);
     }
 
