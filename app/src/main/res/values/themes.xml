@@ -10,6 +10,11 @@
         <item name="colorAccent">#000000</item>
     </style>
 
+    <style name="CustomPinkStyle" parent="Theme.Design.Light">
+        <item name="colorPrimary">#000000</item>
+        <item name="colorAccent">#E91E63</item>
+    </style>
+
     <style name="CustomStyleRed" parent="Theme.Design.Light">
         <item name="colorPrimary">#F44336</item>
         <item name="colorAccent">#F44336</item>

@@ -3,7 +3,6 @@ package com.drone.thesis.services;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -13,7 +12,6 @@ import com.drone.thesis.repository.LocalSqlite;
 import com.github.MakMoinee.library.common.MapForm;
 import com.github.MakMoinee.library.interfaces.DefaultBaseListener;
 import com.github.MakMoinee.library.services.HashPass;
-import com.google.gson.Gson;
 
 public class UserService {
     private LocalSqlite sqlite;
