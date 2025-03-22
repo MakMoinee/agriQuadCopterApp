@@ -35,6 +35,9 @@
         <activity
             android:name=".DroneActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".FullDroneActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

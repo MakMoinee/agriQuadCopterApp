@@ -13,6 +13,9 @@ import com.drone.thesis.repository.LocalSqlite;
 import com.github.MakMoinee.library.common.MapForm;
 import com.github.MakMoinee.library.interfaces.DefaultBaseListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DroneService {
     private LocalSqlite sqlite;
     private final String TABLE_DRONES = "drones";
@@ -117,4 +120,59 @@ public class DroneService {
             listener.onError(new Error("empty drones"));
         }
     }
+
+    @SuppressLint("Range")
+    public void getDroneList(int uid, DefaultBaseListener listener) {
+        if (uid == 0) {
+            SQLiteDatabase db = sqlite.getReadableDatabase();
+            String[] columns = {"id", "userID", "droneName", "ip", "status"};
+            String selection = "userID=?";
+            String[] selectionArgs = {Integer.toString(uid)};
+
+            Cursor cursor = null;
+            List<Drones> droneList = new ArrayList<>();
+
+            try {
+                cursor = db.query(TABLE_DRONES, columns, selection, selectionArgs, null, null, null);
+
+                if (cursor != null && cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex("id"));
+                        int userID = cursor.getInt(cursor.getColumnIndex("userID"));
+                        String droneName = cursor.getString(cursor.getColumnIndex("droneName"));
+                        String ip = cursor.getString(cursor.getColumnIndex("ip"));
+                        String status = cursor.getString(cursor.getColumnIndex("status"));
+
+                        Drones drone = new Drones.DroneBuilder()
+                                .setId(id)
+                                .setUserID(userID)
+                                .setDroneName(droneName)
+                                .setIp(ip)
+                                .setStatus(status)
+                                .build();
+
+                        droneList.add(drone);
+                    } while (cursor.moveToNext());
+                }
+
+                if (!droneList.isEmpty()) {
+                    listener.onSuccess(droneList);
+                } else {
+                    listener.onError(new Error("No drones found"));
+                }
+
+            } catch (Exception e) {
+                Log.e("getDroneList_error", e.getLocalizedMessage());
+                listener.onError(new Error(e.getMessage()));
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+                db.close();
+            }
+        } else {
+            listener.onError(new Error("Invalid drone filter"));
+        }
+    }
+
 }

@@ -5,120 +5,162 @@
     android:layout_height="match_parent"
     android:background="@color/grey">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/myCard"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            app:cardBackgroundColor="@color/bg"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="10dp">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/myCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                app:cardBackgroundColor="@color/bg"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sen_bold"
-                    android:text="Add Your Drone"
-                    android:textColor="@color/white"
-                    android:textSize="25sp" />
-            </RelativeLayout>
+                    android:padding="15dp">
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sen_bold"
+                        android:text="Add Your Drone"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+                </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/myCard"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="10dp">
+            </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/myCard2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp">
+                android:layout_below="@+id/myCard"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutDroneName"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Drone Alias/Name"
-                    android:textColorHint="@color/black">
+                    android:padding="15dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editDroneName"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutDroneName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/sen_regular"
-                        android:inputType="textPersonName"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:minLines="1"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="Drone Alias/Name"
+                        android:textColorHint="@color/black">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layoutIP"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/layoutDroneName"
-                    android:layout_marginTop="10dp"
-                    android:hint="Drone IP"
-                    android:textColorHint="@color/black"
-                    app:endIconDrawable="@drawable/ic_ping">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editDroneName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sen_regular"
+                            android:inputType="textPersonName"
+                            android:lines="1"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editIP"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutIP"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/sen_regular"
-                        android:inputType="textPersonName"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:minLines="1"
-                        android:textSize="15sp" />
+                        android:layout_below="@+id/layoutDroneName"
+                        android:layout_marginTop="10dp"
+                        android:hint="Drone IP"
+                        android:textColorHint="@color/black"
+                        app:endIconDrawable="@drawable/ic_ping">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editIP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sen_regular"
+                            android:inputType="textPersonName"
+                            android:lines="1"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:textSize="15sp" />
 
-                <Button
-                    android:id="@+id/btnPing"
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnPing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/layoutIP"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/sen_bold"
+                        android:text="Ping"
+                        android:textSize="20sp"
+                        android:theme="@style/CustomPinkStyle" />
+
+                    <Button
+                        android:id="@+id/btnSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btnPing"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/sen_bold"
+                        android:text="Save"
+                        android:textSize="20sp"
+                        android:theme="@style/CustomBlackStyle" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/myCard2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/layoutIP"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/sen_bold"
-                    android:text="Ping"
-                    android:textSize="20sp"
-                    android:theme="@style/CustomPinkStyle" />
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
 
-                <Button
-                    android:id="@+id/btnSave"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/btnPing"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/sen_bold"
-                    android:text="Save"
-                    android:textSize="20sp"
-                    android:theme="@style/CustomBlackStyle" />
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/txtDrones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sen_bold"
+                        android:text="AVAILABLE DRONES"
+                        android:textSize="20sp" />
 
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/txtDrones"
+                        android:layout_marginTop="10dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
