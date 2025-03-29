@@ -18,14 +18,46 @@
             android:textColor="@android:color/black"
             android:textSize="15sp" />
 
+        <com.drone.thesis.views.HeatMapView
+            android:id="@+id/myHeatMap"
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/txtDroneName"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/btnArm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/sen_bold"
+            android:text="Arm"
+            android:textSize="12sp"
+            android:theme="@style/CustomBlackStyle" />
+
+
+        <Button
+            android:id="@+id/btnDisarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/btnArm"
+            android:fontFamily="@font/sen_bold"
+            android:text="Disarm"
+            android:textSize="12sp"
+            android:theme="@style/CustomPinkStyle" />
+
         <Button
             android:id="@+id/btnTakeOff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/btnDisarm"
             android:fontFamily="@font/sen_bold"
             android:text="Take Off"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:theme="@style/CustomBlackStyle" />
 
         <Button
@@ -37,7 +69,7 @@
             android:layout_toRightOf="@+id/btnTakeOff"
             android:fontFamily="@font/sen_bold"
             android:text="Land"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:theme="@style/CustomPinkStyle" />
     </RelativeLayout>
 
