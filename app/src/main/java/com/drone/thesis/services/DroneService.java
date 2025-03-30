@@ -175,4 +175,25 @@ public class DroneService {
         }
     }
 
+    public void deleteDrone(Drones drones, DefaultBaseListener listener) {
+        if (drones != null) {
+            SQLiteDatabase db = sqlite.getWritableDatabase();
+            try {
+                int affectedRows = db.delete(TABLE_DRONES, "id = ?", new String[]{String.valueOf(drones.getId())});
+                if (affectedRows > 0) {
+                    listener.onSuccess("Drone successfully deleted");
+                } else {
+                    listener.onError(new Error("Failed to delete drone or drone not found"));
+                }
+            } catch (Exception e) {
+                Log.e("deleteDrone_error", e.getLocalizedMessage());
+                listener.onError(new Error(e.getMessage()));
+            } finally {
+                db.close();
+            }
+        } else {
+            listener.onError(new Error("Drone object is null"));
+        }
+    }
+
 }

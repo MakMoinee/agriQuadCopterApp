@@ -1,5 +1,6 @@
 package com.drone.thesis;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,11 +8,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.drone.thesis.adapters.DroneAdapter;
 import com.drone.thesis.databinding.ActivityDroneBinding;
+import com.drone.thesis.interfaces.DroneListener;
 import com.drone.thesis.models.Drones;
 import com.drone.thesis.preference.LocalPref;
 import com.drone.thesis.services.DroneRequestService;
@@ -34,6 +37,7 @@ public class DroneActivity extends AppCompatActivity {
     DroneAdapter adapter;
     List<Drones> dronesList;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +59,42 @@ public class DroneActivity extends AppCompatActivity {
                 if (any instanceof List<?>) {
                     List<?> tmpList = (List<?>) any;
                     dronesList = (List<Drones>) tmpList;
-                    adapter = new DroneAdapter(DroneActivity.this, dronesList, new DefaultEventListener() {
+                    adapter = new DroneAdapter(DroneActivity.this, dronesList, new DroneListener() {
                         @Override
-                        public void onClickListener() {
+                        public void onDeleteItem(int position) {
+                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(DroneActivity.this);
+                            DialogInterface.OnClickListener dListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface d, int which) {
+                                    switch (which) {
+                                        case DialogInterface.BUTTON_NEGATIVE -> {
+                                            Drones deletedDrone = dronesList.get(position);
+                                            if (deletedDrone != null) {
+                                                droneService.deleteDrone(deletedDrone, new DefaultBaseListener() {
+                                                    @Override
+                                                    public <T> void onSuccess(T any) {
+                                                        Toast.makeText(DroneActivity.this, "Successfully Deleted Record", Toast.LENGTH_SHORT).show();
+                                                        loadList();
+                                                    }
 
+                                                    @Override
+                                                    public void onError(Error error) {
+                                                        Toast.makeText(DroneActivity.this, "Failed To Delete Record, Please Try Again Later", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }
+                                        }
+                                        default -> {
+                                            d.dismiss();
+                                        }
+                                    }
+                                }
+                            };
+                            mBuilder.setMessage("Are You Sure You Want To Delete This Records")
+                                    .setNegativeButton("Yes", dListener)
+                                    .setPositiveButton("No", dListener)
+                                    .setCancelable(false)
+                                    .show();
                         }
 
                         @Override
