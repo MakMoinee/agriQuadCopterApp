@@ -31,7 +31,7 @@ public class FullDroneActivity extends AppCompatActivity implements ThermalFetch
         binding = ActivityFullDroneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         service = new DroneRequestService(FullDroneActivity.this);
-        selectedDrone = new Gson().fromJson(getIntent().getStringExtra("drones"), new TypeToken<Drones>() {
+        selectedDrone = new Gson().fromJson(getIntent().getStringExtra("drone"), new TypeToken<Drones>() {
         }.getType());
         if (selectedDrone != null) {
             binding.txtDroneName.setText(selectedDrone.getDroneName());
