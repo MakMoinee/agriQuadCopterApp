@@ -123,7 +123,7 @@ public class DroneService {
 
     @SuppressLint("Range")
     public void getDroneList(int uid, DefaultBaseListener listener) {
-        if (uid == 0) {
+        if (uid != 0) {
             SQLiteDatabase db = sqlite.getReadableDatabase();
             String[] columns = {"id", "userID", "droneName", "ip", "status"};
             String selection = "userID=?";
