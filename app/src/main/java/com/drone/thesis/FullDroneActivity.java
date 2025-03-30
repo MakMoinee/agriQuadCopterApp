@@ -14,6 +14,7 @@ import com.drone.thesis.services.ThermalFetcher;
 import com.github.MakMoinee.library.dialogs.MyDialog;
 import com.github.MakMoinee.library.interfaces.LocalVolleyRequestListener;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class FullDroneActivity extends AppCompatActivity implements ThermalFetcher.ThermalDataListener {
 
@@ -30,7 +31,8 @@ public class FullDroneActivity extends AppCompatActivity implements ThermalFetch
         binding = ActivityFullDroneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         service = new DroneRequestService(FullDroneActivity.this);
-        selectedDrone = new Gson().fromJson(getIntent().getStringExtra("drones"), Drones.class);
+        selectedDrone = new Gson().fromJson(getIntent().getStringExtra("drones"), new TypeToken<Drones>() {
+        }.getType());
         if (selectedDrone != null) {
             binding.txtDroneName.setText(selectedDrone.getDroneName());
             picoIp = selectedDrone.getIp();
