@@ -90,6 +90,13 @@ public class DroneActivity extends AppCompatActivity {
                         .setUrl(String.format("http://%s/health", ip))
                         .build();
                 requestService.pingDrone(body, new LocalVolleyRequestListener() {
+
+                    @Override
+                    public void onSuccessString(String response) {
+                        Toast.makeText(DroneActivity.this, "Drone was able to ping successfully, you can proceed saving it now ..", Toast.LENGTH_SHORT).show();
+                        binding.btnSave.setEnabled(true);
+                    }
+
                     @Override
                     public void onSuccessJSON(JSONObject object) {
                         Toast.makeText(DroneActivity.this, "Drone was able to ping successfully, you can proceed saving it now ..", Toast.LENGTH_SHORT).show();
