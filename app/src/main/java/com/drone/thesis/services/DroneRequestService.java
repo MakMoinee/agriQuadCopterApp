@@ -18,7 +18,7 @@ public class DroneRequestService extends LocalVolleyRequest {
     }
 
     public void pingDrone(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
-        this.sendJSONGetRequest(body, listener);
+        this.sendTextPlainRequest(body, listener);
     }
 
 
