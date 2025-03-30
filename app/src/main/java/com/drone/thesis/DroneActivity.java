@@ -28,7 +28,9 @@ import com.google.gson.Gson;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DroneActivity extends AppCompatActivity {
     ActivityDroneBinding binding;
@@ -59,6 +61,7 @@ public class DroneActivity extends AppCompatActivity {
                 if (any instanceof List<?>) {
                     List<?> tmpList = (List<?>) any;
                     dronesList = (List<Drones>) tmpList;
+                    dronesList = removeDuplicates(dronesList);
                     adapter = new DroneAdapter(DroneActivity.this, dronesList, new DroneListener() {
                         @Override
                         public void onDeleteItem(int position) {
@@ -115,6 +118,21 @@ public class DroneActivity extends AppCompatActivity {
                 Log.e("error_loading", error.getLocalizedMessage());
             }
         });
+    }
+
+    private List<Drones> removeDuplicates(List<Drones> dronesList) {
+        Set<Drones> newList = new HashSet<>();
+        if (!dronesList.isEmpty()) {
+            for (Drones d : dronesList) {
+                if (d != null) {
+                    newList.add(d);
+                }
+            }
+        }
+
+        List<Drones> dList = new ArrayList<>(newList);
+
+        return dList;
     }
 
     private void setListener() {
