@@ -31,6 +31,7 @@ public class DroneActivity extends AppCompatActivity {
     DroneRequestService requestService;
     DroneService droneService;
     DroneAdapter adapter;
+    List<Drones> dronesList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,8 +52,8 @@ public class DroneActivity extends AppCompatActivity {
             public <T> void onSuccess(T any) {
                 if (any instanceof List<?>) {
                     List<?> tmpList = (List<?>) any;
-                    List<Drones> list = (List<Drones>) tmpList;
-                    adapter = new DroneAdapter(DroneActivity.this, list, new DefaultEventListener() {
+                    dronesList = (List<Drones>) tmpList;
+                    adapter = new DroneAdapter(DroneActivity.this, dronesList, new DefaultEventListener() {
                         @Override
                         public void onClickListener() {
 
@@ -60,7 +61,7 @@ public class DroneActivity extends AppCompatActivity {
 
                         @Override
                         public void onClickListener(int position) {
-                            Drones drones = list.get(position);
+                            Drones drones = dronesList.get(position);
                             Intent intent = new Intent(DroneActivity.this, FullDroneActivity.class);
                             intent.putExtra("drone", new Gson().toJson(drones));
                             startActivity(intent);
@@ -73,7 +74,7 @@ public class DroneActivity extends AppCompatActivity {
 
             @Override
             public void onError(Error error) {
-
+                Log.e("error_loading", error.getLocalizedMessage());
             }
         });
     }
@@ -130,6 +131,7 @@ public class DroneActivity extends AppCompatActivity {
                     @Override
                     public <T> void onSuccess(T any) {
                         Toast.makeText(DroneActivity.this, "Successfully Added Drone", Toast.LENGTH_SHORT).show();
+                        loadList();
                     }
 
                     @Override
