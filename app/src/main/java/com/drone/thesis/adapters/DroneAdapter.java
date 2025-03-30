@@ -40,6 +40,12 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.ViewHolder> 
         Drones drones = dronesList.get(position);
         if (drones != null) {
             holder.txtDroneName.setText(drones.getDroneName());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClickListener(holder.getAdapterPosition());
+                }
+            });
         }
     }
 

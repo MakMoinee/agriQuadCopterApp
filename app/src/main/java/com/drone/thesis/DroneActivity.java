@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DroneActivity extends AppCompatActivity {
@@ -47,6 +48,7 @@ public class DroneActivity extends AppCompatActivity {
 
     private void loadList() {
         int id = new LocalPref(DroneActivity.this).getIntItem("id");
+        dronesList = new ArrayList<>();
         droneService.getDroneList(id, new DefaultBaseListener() {
             @Override
             public <T> void onSuccess(T any) {
