@@ -26,7 +26,7 @@ public class DroneRequestService extends LocalVolleyRequest {
 
     public void takeOff(String ip, LocalVolleyRequestListener listener) {
         LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
-                .setUrl(String.format("http://%s/takeOff", ip))
+                .setUrl(String.format("http://%s/takeoff", ip))
                 .build();
         this.sendTextPlainRequest(body, new LocalVolleyRequestListener() {
             @Override
