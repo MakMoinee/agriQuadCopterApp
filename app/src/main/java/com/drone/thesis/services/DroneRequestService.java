@@ -13,6 +13,8 @@ import org.json.JSONObject;
 
 public class DroneRequestService extends LocalVolleyRequest {
 
+    private final String controlString = "http://%s/control?pitch=%.2f&roll=%.2f&throttle=%.2f&yaw=%.2f";
+
     public DroneRequestService(Context mContext) {
         super(mContext);
     }
@@ -26,9 +28,9 @@ public class DroneRequestService extends LocalVolleyRequest {
         LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
                 .setUrl(String.format("http://%s/takeOff", ip))
                 .build();
-        this.sendJSONGetRequest(body, new LocalVolleyRequestListener() {
+        this.sendTextPlainRequest(body, new LocalVolleyRequestListener() {
             @Override
-            public void onSuccessJSON(JSONObject object) {
+            public void onSuccessString(String response) {
                 listener.onSuccessString("success");
             }
 
@@ -41,9 +43,9 @@ public class DroneRequestService extends LocalVolleyRequest {
 
     public void landing(String ip, LocalVolleyRequestListener listener) {
         LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
-                .setUrl(String.format("http://%s/land", ip))
+                .setUrl(String.format("http://%s/landing", ip))
                 .build();
-        this.sendJSONGetRequest(body, new LocalVolleyRequestListener() {
+        this.sendTextPlainRequest(body, new LocalVolleyRequestListener() {
             @Override
             public void onSuccessString(String response) {
                 listener.onSuccessString("success");
@@ -105,6 +107,15 @@ public class DroneRequestService extends LocalVolleyRequest {
                 listener.onError(error);
             }
         });
+    }
+
+    public void sendCommand(String ip, float pitch, float roll, float throttle, float yaw, LocalVolleyRequestListener listener) {
+        String formattedUrl = String.format(controlString, ip, pitch, roll, throttle, yaw);
+        LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
+                .setUrl(formattedUrl)
+                .build();
+        this.sendTextPlainRequest(body, listener);
+
     }
 
 }

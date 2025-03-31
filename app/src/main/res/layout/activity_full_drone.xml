@@ -19,17 +19,26 @@
             android:textSize="15sp" />
 
         <com.drone.thesis.views.HeatMapView
+            android:layout_centerHorizontal="true"
             android:id="@+id/myHeatMap"
             android:layout_width="350dp"
             android:layout_height="150dp"
             android:layout_below="@+id/txtDroneName"
             android:layout_marginTop="20dp" />
 
+        <com.drone.thesis.views.JoyStickView
+            android:id="@+id/btnJoyLeft"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_alignParentBottom="true" />
+
         <Button
             android:id="@+id/btnArm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/btnJoyLeft"
             android:fontFamily="@font/sen_bold"
             android:text="Arm"
             android:textSize="12sp"
@@ -66,11 +75,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/btnJoyRight"
             android:layout_toRightOf="@+id/btnTakeOff"
             android:fontFamily="@font/sen_bold"
             android:text="Land"
             android:textSize="12sp"
             android:theme="@style/CustomPinkStyle" />
+
+        <com.drone.thesis.views.JoyStickView
+            android:id="@+id/btnJoyRight"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -82,5 +82,11 @@ public class DashboardActivity extends AppCompatActivity implements LogoutListen
         getSupportActionBar().setTitle("List Of Drones");
     }
 
+    @Override
+    public void openDrones() {
+        startActivity(new Intent(DashboardActivity.this, DroneActivity.class));
+        finish();
+    }
+
 
 }

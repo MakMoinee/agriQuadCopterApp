@@ -23,14 +23,22 @@ public class DroneFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentDronesBinding.inflate(LayoutInflater.from(requireContext()), container, false);
-        listener.setParentTitle();
-        setListener();
-        return binding.getRoot();
+        listener.openDrones();
+        return null;
     }
 
-    private void setListener() {
-        binding.btnAddDrone.setOnClickListener(v -> requireContext().startActivity(new Intent(requireContext(), DroneActivity.class)));
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (listener != null) {
+
+            listener.openDrones();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

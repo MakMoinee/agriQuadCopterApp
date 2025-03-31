@@ -198,4 +198,11 @@ public class DroneActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(DroneActivity.this, DashboardActivity.class));
+        finish();
+    }
 }

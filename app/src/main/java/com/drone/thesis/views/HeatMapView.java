@@ -30,9 +30,14 @@ public class HeatMapView extends View {
         float cellWidth = getWidth() / (float) cols;
         float cellHeight = getHeight() / (float) rows;
 
+        // Creating a geographical variation effect
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                paint.setColor(getColorForTemperature(thermalData[i][j]));
+                // Apply a more varied temperature gradient that mimics geographical regions
+                float geographicalFactor = (float) Math.sin(i / 3.0) * 0.1f + (float) Math.cos(j / 3.0) * 0.1f;
+                float modifiedTemp = thermalData[i][j] + geographicalFactor * 10;
+
+                paint.setColor(getColorForTemperature(modifiedTemp));
                 canvas.drawRect(j * cellWidth, i * cellHeight, (j + 1) * cellWidth, (i + 1) * cellHeight, paint);
             }
         }
@@ -45,6 +50,7 @@ public class HeatMapView extends View {
         float ratio = (temp - minTemp) / (maxTemp - minTemp);
         ratio = Math.max(0, Math.min(1, ratio)); // Clamp to [0,1]
 
+        // Apply a color gradient from blue to red
         int red = (int) (255 * ratio);
         int blue = (int) (255 * (1 - ratio));
         return Color.rgb(red, 0, blue);
