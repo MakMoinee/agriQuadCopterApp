@@ -130,14 +130,14 @@ public class FullDroneActivity extends AppCompatActivity implements ThermalFetch
         });
 
         binding.btnJoyRight.setJoystickListener((x, y) -> {
-            yaw = 1500 + x * 500;     // Map X to yaw (left-right)
-            throttle = 1500 + y * 500;  // Map Y to throttle (up-down)
+            throttle = 1500 + x * 500;     // Map X to yaw (left-right)
+            yaw = 1500 + y * 500;  // Map Y to throttle (up-down)
             sendControlCommand();
         });
     }
 
     private void sendControlCommand() {
-        service.sendCommand(picoIp, pitch, roll, throttle, yaw, new LocalVolleyRequestListener() {
+        service.sendCommand(picoIp, pitch, roll, yaw, throttle, new LocalVolleyRequestListener() {
             @Override
             public void onSuccessString(String response) {
 
