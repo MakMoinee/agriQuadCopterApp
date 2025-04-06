@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class DroneRequestService extends LocalVolleyRequest {
 
-    private final String controlString = "http://%s/control?pitch=%.2f&roll=%.2f&throttle=%.2f&yaw=%.2f";
+    private final String controlString = "http://%s/control?pitch=%.0f&roll=%.0f&throttle=%.0f&yaw=%.0f";
 
     public DroneRequestService(Context mContext) {
         super(mContext);
