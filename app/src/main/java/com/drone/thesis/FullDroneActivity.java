@@ -137,7 +137,7 @@ public class FullDroneActivity extends AppCompatActivity implements ThermalFetch
     }
 
     private void sendControlCommand() {
-        service.sendCommand(picoIp, pitch, roll, yaw, throttle, new LocalVolleyRequestListener() {
+        service.sendCommand(picoIp, pitch, roll, throttle,yaw, new LocalVolleyRequestListener() {
             @Override
             public void onSuccessString(String response) {
 

@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class DroneRequestService extends LocalVolleyRequest {
 
-    private final String controlString = "http://%s/control?pitch=%.0f&roll=%.0f&throttle=%.0f&yaw=2000";
+    private final String controlString = "http://%s/control?pitch=%.0f&roll=%.0f&throttle=%.0f&yaw=%.0f";
 
     public DroneRequestService(Context mContext) {
         super(mContext);
@@ -123,7 +123,7 @@ public class DroneRequestService extends LocalVolleyRequest {
     }
 
     public void sendCommand(String ip, float pitch, float roll, float throttle, float yaw, LocalVolleyRequestListener listener) {
-        String formattedUrl = String.format(controlString, ip, pitch, roll, throttle);
+        String formattedUrl = String.format(controlString, ip, pitch, roll, throttle,yaw);
         LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
                 .setUrl(formattedUrl)
                 .build();
