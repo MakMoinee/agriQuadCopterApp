@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class DroneRequestService extends LocalVolleyRequest {
 
-    private final String controlString = "http://%s/control?pitch=%.0f&roll=%.0f&throttle=%.0f&yaw=%.0f";
+    private final String controlString = "http://%s/control?pitch=%.0f&roll=%.0f&throttle=%.0f&yaw=2000";
 
     public DroneRequestService(Context mContext) {
         super(mContext);
@@ -26,7 +26,7 @@ public class DroneRequestService extends LocalVolleyRequest {
 
     public void takeOff(String ip, LocalVolleyRequestListener listener) {
         LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
-                .setUrl(String.format("http://%s/takeoff", ip))
+                .setUrl(String.format("http://%s/control?throttle=2000", ip))
                 .build();
         this.sendTextPlainRequest(body, new LocalVolleyRequestListener() {
             @Override
@@ -61,9 +61,22 @@ public class DroneRequestService extends LocalVolleyRequest {
 
     public void disarm(String ip, LocalVolleyRequestListener listener) {
         LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
-                .setUrl(String.format("http://%s/disarm", ip))
+                .setUrl(String.format("http://%s/yaw?=1500", ip))
                 .build();
-        this.sendTextPlainRequest(body, listener);
+        this.sendTextPlainRequest(body, new LocalVolleyRequestListener() {
+            @Override
+            public void onSuccessString(String response) {
+                LocalVolleyRequestBody body1 = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
+                        .setUrl(String.format("http://%s/disarm", ip))
+                        .build();
+                sendTextPlainRequest(body1, listener);
+            }
+
+            @Override
+            public void onError(Error error) {
+                listener.onError(error);
+            }
+        });
     }
 
     public void arm(String ip, LocalVolleyRequestListener listener) {
@@ -110,7 +123,7 @@ public class DroneRequestService extends LocalVolleyRequest {
     }
 
     public void sendCommand(String ip, float pitch, float roll, float throttle, float yaw, LocalVolleyRequestListener listener) {
-        String formattedUrl = String.format(controlString, ip, pitch, roll, throttle, yaw);
+        String formattedUrl = String.format(controlString, ip, pitch, roll, throttle);
         LocalVolleyRequestBody body = new LocalVolleyRequestBody.LocalVolleyRequestBodyBuilder()
                 .setUrl(formattedUrl)
                 .build();
